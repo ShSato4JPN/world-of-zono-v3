@@ -10,10 +10,13 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "dayjs": "1.11.10",
     "next": "14.1.4",
+    "next-theme": "0.1.5",
     "next-themes": "0.3.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-icons": "5.0.1",
     "sass": "1.72.0"
   },
   "devDependencies": {
