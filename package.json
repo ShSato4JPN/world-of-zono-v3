@@ -10,6 +10,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "contentful": "10.8.6",
+    "contentful-management": "11.24.3",
     "dayjs": "1.11.10",
     "next": "14.1.4",
     "next-theme": "0.1.5",
