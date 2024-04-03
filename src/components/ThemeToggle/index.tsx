@@ -7,16 +7,10 @@ import styles from "./style.module.scss";
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
 
-  return (
-    <div className="theme-toggle">
-      {theme === "light" ? (
-        <FaLightbulb className={styles.dark} onClick={() => setTheme("dark")} />
-      ) : (
-        <FaLightbulb
-          className={styles.light}
-          onClick={() => setTheme("light")}
-        />
-      )}
-    </div>
+  // undefined は light として扱う
+  return theme === "light" || theme === undefined ? (
+    <FaLightbulb className={styles.dark} onClick={() => setTheme("dark")} />
+  ) : (
+    <FaLightbulb className={styles.light} onClick={() => setTheme("light")} />
   );
 }

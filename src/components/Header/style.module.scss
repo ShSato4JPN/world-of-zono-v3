@@ -6,6 +6,11 @@
   display: flex;
   justify-content: space-between;
 
+  @media (width >= 428px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
   @media (width >= 768px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -14,14 +19,16 @@
 
 .siteName {
   display: none;
+  padding: none;
+  white-space: nowrap;
 
   @media (width >= 428px) {
-    font-size: 4.3rem;
+    display: block;
+    font-size: 3.4rem;
   }
 
   @media screen and (width >= 768px) {
-    display: inline-block;
-    font-size: 3.5rem;
+    font-size: 4rem;
   }
 }
 
@@ -31,26 +38,51 @@
   justify-content: space-around;
   width: 100%;
 
-  @media (width >= 768px) {
+  @media (width >= 428px) {
+    flex-wrap: wrap;
+    gap: 5px;
     justify-content: flex-end;
+  }
+
+  @media screen and (width >= 768px) {
+    gap: 20px;
   }
 }
 
 .linkField {
+  cursor: pointer;
+
   display: flex;
   flex-direction: column;
   align-items: center;
 
+  box-sizing: border-box;
+
   @media (width >= 428px) {
     justify-content: center;
-    width: 70px;
+    width: 50px;
+  }
+
+  @media screen and (width >= 768px) {
+    width: 55px;
   }
 }
 
 .icon {
-  font-size: 25px;
+  font-size: 23px;
 }
 
 .link {
+  justify-content: center;
+  padding-bottom: 2px;
   font-size: 10px;
+  text-align: center;
+
+  @media (width >= 428px) {
+    font-size: 1.3rem;
+  }
+
+  @media screen and (width >= 768px) {
+    font-size: 1.4rem;
+  }
 }
