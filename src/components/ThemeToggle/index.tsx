@@ -2,8 +2,9 @@
 
 import { Menu, MenuItem } from "@szhsin/react-menu";
 import { useTheme } from "next-themes";
-import { FaLightbulb } from "react-icons/fa";
 import { IoSettingsOutline } from "react-icons/io5";
+import { MdDarkMode } from "react-icons/md";
+import { MdLightMode } from "react-icons/md";
 
 import "@szhsin/react-menu/dist/theme-dark.css";
 import "@szhsin/react-menu/dist/index.css";
@@ -25,11 +26,11 @@ export default function ThemeToggle() {
   const themeIcon = () => {
     switch (appTheme) {
       case "light":
-        return <FaLightbulb className={styles.light} />;
+        return <MdLightMode className={styles.icon} />;
       case "dark":
-        return <FaLightbulb className={styles.dark} />;
+        return <MdDarkMode className={styles.icon} />;
       default:
-        return <IoSettingsOutline className={styles.system} />;
+        return <IoSettingsOutline className={styles.icon} />;
     }
   };
 
@@ -45,11 +46,11 @@ export default function ThemeToggle() {
         <span className={styles.label}>System</span>
       </MenuItem>
       <MenuItem className={styles.menuItem} onClick={() => setTheme("light")}>
-        <FaLightbulb className={styles.light} />
+        <MdLightMode className={styles.light} />
         <span className={styles.label}>Light</span>
       </MenuItem>
       <MenuItem className={styles.menuItem} onClick={() => setTheme("dark")}>
-        <FaLightbulb className={styles.dark} />
+        <MdDarkMode className={styles.dark} />
         <span className={styles.label}>Dark</span>
       </MenuItem>
     </Menu>
