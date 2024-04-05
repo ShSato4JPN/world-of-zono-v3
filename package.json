@@ -10,6 +10,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@szhsin/react-menu": "4.1.0",
     "contentful": "10.8.6",
     "contentful-management": "11.24.3",
     "dayjs": "1.11.10",

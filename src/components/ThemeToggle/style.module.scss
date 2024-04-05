@@ -1,11 +1,33 @@
+.trigger {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+
+.menuItem {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  padding: 10px;
+}
+
+.label {
+  font-size: 1.4rem;
+}
+
+.system {
+  cursor: pointer;
+  font-size: 20px;
+}
+
 .dark {
   cursor: pointer;
   font-size: 20px;
-  color: black;
+  color: var(--foreground);
 }
 
 .light {
   cursor: pointer;
   font-size: 20px;
-  color: rgb(226 235 61);
+  color: #d3c52e;
 }

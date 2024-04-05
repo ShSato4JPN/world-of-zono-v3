@@ -1,8 +1,9 @@
+"use client";
 import { useMemo } from "react";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AiOutlineHome } from "react-icons/ai";
+import { FaRegStar } from "react-icons/fa6";
 import { GoBook } from "react-icons/go";
 import { GoMail } from "react-icons/go";
 import { RiAccountPinBoxLine } from "react-icons/ri";
@@ -22,18 +23,18 @@ export default function Header() {
 
   const menuList = useMemo(
     () => [
-      {
-        key: "home",
-        icon: <AiOutlineHome />,
-        label: "Home",
-        path: "/",
-      },
       { key: "blog", icon: <GoBook />, label: "Blog", path: "/blog" },
       {
         key: "profile",
         icon: <RiAccountPinBoxLine />,
         label: "Profile",
         path: "/profile",
+      },
+      {
+        key: "bookmark",
+        icon: <FaRegStar />,
+        label: "Bookmark",
+        path: "/",
       },
       { key: "contact", icon: <GoMail />, label: "Contact", path: "/contact" },
     ],
@@ -43,7 +44,7 @@ export default function Header() {
   const items = useMemo<JSX.Element[]>(
     () =>
       menuList.map((item) => (
-        <Link className={styles.linkField} href={`/${item.key}`} key={item.key}>
+        <Link className={styles.linkField} href={item.path} key={item.key}>
           <div className={styles.icon}>{item.icon}</div>
           <div
             className={styles.link}
@@ -68,7 +69,7 @@ export default function Header() {
             <div className={styles.icon}>
               <ThemeToggle />
             </div>
-            <div className={styles.link}>Light</div>
+            <div className={styles.link}>Theme</div>
           </div>
         </nav>
       </header>
