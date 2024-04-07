@@ -1,0 +1,97 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 30px;
+}
+
+.contactTop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 10px;
+}
+
+.formItem {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+
+  label {
+    font-size: 1.3rem;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 5px 8px;
+
+    font-size: 1.4rem;
+
+    border: 1px solid var(--border);
+    border-radius: 5px;
+
+    &:focus {
+      border: 1px solid var(--forcus-border);
+      outline: 0;
+    }
+  }
+
+  textarea {
+    width: 100%;
+    padding: 5px 8px;
+
+    font-size: 1.4rem;
+    line-height: 1.5;
+
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    outline: 0;
+
+    &:focus {
+      border: 1px solid var(--forcus-border);
+      outline: 0;
+    }
+  }
+}
+
+.itemLabel {
+  display: flex;
+  gap: 10px;
+}
+
+.submit {
+  cursor: pointer;
+
+  padding: 5px 8px;
+
+  font-size: 1.4rem;
+
+  border: 1px solid var(--border);
+  border-radius: 5px;
+
+  &:focus {
+    border: 1px solid var(--forcus-border);
+    outline: 0;
+  }
+
+  &:hover {
+    background-color: var(--forcus-background);
+  }
+}
+
+.error {
+  font-size: 1.2rem;
+  color: rgb(255 67 67);
+}
