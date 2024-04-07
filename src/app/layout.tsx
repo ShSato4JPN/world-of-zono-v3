@@ -1,8 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Zen_Maru_Gothic } from "next/font/google";
+import { ThemeProvider } from "next-themes";
+
+import Layout from "@/components/Layout";
+
 import "./globals.scss";
 
-const inter = Inter({ subsets: ["latin"] });
+const zenMaruGothic = Zen_Maru_Gothic({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +23,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="jp" suppressHydrationWarning>
+      <body className={zenMaruGothic.className}>
+        <ThemeProvider enableSystem={true}>
+          <Layout>{children}</Layout>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

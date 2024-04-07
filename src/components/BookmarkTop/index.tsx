@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { ThreeDots } from "react-loader-spinner";
 
 import { setCookie, getCookie } from "cookies-next";
 import dayjs from "dayjs";
@@ -109,14 +110,27 @@ export default function BookmarkTop({ ids }: BookmarkProps) {
     );
   };
 
+  if (data === undefined) {
+    return (
+      <div className={styles.wrapper}>
+        <div className={styles.loading}>
+          <ThreeDots
+            visible={true}
+            height="80"
+            width="80"
+            color="#944848"
+            radius="9"
+            ariaLabel="three-dots-loading"
+          />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.bookmarkTop}>
-        {data === undefined || data.items.length === 0 ? (
-          <Description />
-        ) : (
-          posts
-        )}
+        {data?.items.length === 0 ? <Description /> : posts}
       </div>
     </div>
   );

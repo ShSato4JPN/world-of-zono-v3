@@ -8,7 +8,14 @@
 }
 
 .bookmarkTop {
+  width: 100%;
   max-width: 980px;
+}
+
+.loading {
+  display: grid;
+  place-items: center;
+  height: 80vh;
 }
 
 .post {
