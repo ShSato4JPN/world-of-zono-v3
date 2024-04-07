@@ -19,22 +19,8 @@
   gap: 5px;
 }
 
-.bookmark {
-  cursor: pointer;
-
-  position: absolute;
-  top: -2px;
-  right: 0;
-
-  font-size: 2.5rem;
-}
-
-.bookmarked {
-  color: orange;
-}
-
 .title {
-  width: 90%;
+  margin-bottom: 5px;
   font-size: 2.5rem;
 
   @media (width >= 428px) {
@@ -42,12 +28,12 @@
   }
 
   @media (width >= 768px) {
-    font-size: 2.9rem;
+    font-size: 3rem;
   }
 }
 
 .publishedAt {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 }
 
 .tags {
@@ -63,7 +49,8 @@
   border-radius: 8px;
 
   &:hover {
-    background-color: var(--tag-hover);
+    background-color: var(--forcus-background);
+    border: 1px solid var(--forcus-border);
   }
 
   @media (width >= 428px) {
@@ -81,5 +68,19 @@
     content: "";
     margin: 7px 0 12px;
     border-top: 1px solid var(--border);
+  }
+
+  .bookmark {
+    cursor: pointer;
+
+    position: absolute;
+    top: -2px;
+    right: 0;
+
+    font-size: 2.5rem;
+  }
+
+  .bookmarked {
+    color: orange;
   }
 }
