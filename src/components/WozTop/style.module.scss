@@ -7,8 +7,28 @@
   padding: 0 8px;
 }
 
-.blogTop {
+.wozTop {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   max-width: 980px;
+}
+
+.latest {
+  padding-left: 15px;
+  font-size: 3.5rem;
+}
+
+.publishedGroup {
+  margin-bottom: 3rem;
+  padding: 5px;
+  border-left: 6px solid var(--forcus-background);
+}
+
+.subtitle {
+  margin-bottom: 10px;
+  padding: 5px;
+  font-size: 2.5rem;
 }
 
 .post {
@@ -26,7 +46,7 @@
 }
 
 .publishedAt {
-  font-size: 15px;
+  font-size: 2.5rem;
 }
 
 .bookmark {
@@ -45,6 +65,7 @@
 
 .title {
   display: inline-block;
+  width: 90%;
   font-size: 2rem;
 
   @media (hover: hover) {
@@ -66,11 +87,9 @@
   border: 1px solid var(--border);
   border-radius: 8px;
 
-  @media (hover: hover) {
-    &:hover {
-      background-color: var(--forcus-background);
-      border: 1px solid var(--forcus-border);
-    }
+  &:hover {
+    background-color: var(--forcus-background);
+    border: 1px solid var(--forcus-border);
   }
 }
 

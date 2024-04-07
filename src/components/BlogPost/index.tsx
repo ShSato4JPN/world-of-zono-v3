@@ -57,6 +57,16 @@ export default function BlogPost({ id }: BlogPostProps) {
     <div className={styles.wrapper}>
       <div className={styles.blogPost}>
         <div className={styles.header}>
+          <div className={styles.bookmark}>
+            {bookmarked ? (
+              <FaStar
+                className={styles.bookmarked}
+                onClick={() => deleteCookie(id)}
+              />
+            ) : (
+              <FaRegStar onClick={() => addCookie(id)} />
+            )}
+          </div>
           <h1 className={styles.title}>{title}</h1>
           <time className={styles.publishedAt}>{`投稿日: ${publishedAt}`}</time>
           <h2>Tags</h2>
@@ -71,16 +81,6 @@ export default function BlogPost({ id }: BlogPostProps) {
         <article className={styles.body}>
           <ArticleViewer html={body} />
         </article>
-        <div className={styles.bookmark}>
-          {bookmarked ? (
-            <FaStar
-              className={styles.bookmarked}
-              onClick={() => deleteCookie(id)}
-            />
-          ) : (
-            <FaRegStar onClick={() => addCookie(id)} />
-          )}
-        </div>
       </div>
     </div>
   );

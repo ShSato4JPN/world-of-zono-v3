@@ -9,16 +9,16 @@ import styles from "./style.module.scss";
 
 export default function ProfileTop() {
   const snsList = [
-    { url: "", icon: <FaXTwitter /> },
-    { url: "", icon: <FaGithub /> },
-    { url: "", icon: <FaSquareThreads /> },
-    { url: "", icon: <SiWantedly /> },
+    { url: "", icon: <FaXTwitter className={styles.icon} /> },
+    { url: "", icon: <FaGithub className={styles.icon} /> },
+    { url: "", icon: <FaSquareThreads className={styles.icon} /> },
+    { url: "", icon: <SiWantedly className={styles.icon} /> },
   ];
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.profileTop}>
-        <figure className={styles.icon}>
+        <figure className={styles.image}>
           <Image
             src="/profile.svg"
             alt={"管理人のイメージ画像です"}

@@ -6,8 +6,10 @@
   --foreground: #3d3535;
   --border: #312f2f;
   --tag-hover: #898989bd;
-  --forcus-border: #ffa200;
-  --forcus-background: #ffa200a7;
+  --forcus-color: #3d3535;
+  --forcus-border: #ff7b00;
+  --forcus-background: #ff9500c2;
+  --bookmark: #ff6f00;
 }
 
 [data-theme="dark"] {
@@ -15,6 +17,9 @@
   --foreground: #eaeaea;
   --border: #eaeaea;
   --tag-hover: #6a6a6ac0;
+  --forcus-border: #ffe100;
+  --forcus-background: #ffe100b7;
+  --bookmark: #ffe100;
 }
 
 * {

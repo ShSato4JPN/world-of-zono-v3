@@ -42,15 +42,15 @@ export default function ThemeToggle() {
       menuButton={<button className={styles.trigger}>{themeIcon()}</button>}
     >
       <MenuItem className={styles.menuItem} onClick={() => setTheme("system")}>
-        <IoSettingsOutline className={styles.system} />
+        <IoSettingsOutline />
         <span className={styles.label}>System</span>
       </MenuItem>
       <MenuItem className={styles.menuItem} onClick={() => setTheme("light")}>
-        <MdLightMode className={styles.light} />
+        <MdLightMode />
         <span className={styles.label}>Light</span>
       </MenuItem>
       <MenuItem className={styles.menuItem} onClick={() => setTheme("dark")}>
-        <MdDarkMode className={styles.dark} />
+        <MdDarkMode />
         <span className={styles.label}>Dark</span>
       </MenuItem>
     </Menu>

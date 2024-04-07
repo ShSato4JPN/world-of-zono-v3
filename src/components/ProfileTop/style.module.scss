@@ -23,7 +23,7 @@
   }
 }
 
-.icon {
+.image {
   display: grid;
   place-items: center;
   margin-bottom: 10px;
@@ -59,4 +59,12 @@
   gap: 20px;
   font-size: 3rem;
   color: var(--foreground);
+}
+
+.icon {
+  @media (hover: hover) {
+    &:hover {
+      color: var(--bookmark);
+    }
+  }
 }

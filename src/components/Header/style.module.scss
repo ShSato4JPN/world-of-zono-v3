@@ -50,12 +50,9 @@
 }
 
 .linkField {
-  cursor: pointer;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-
   box-sizing: border-box;
 
   @media (width >= 428px) {
@@ -69,7 +66,21 @@
 }
 
 .icon {
+  cursor: pointer;
+
+  box-sizing: border-box;
+  padding: 0 5px;
+
   font-size: 23px;
+
+  border: 2px solid transparent;
+
+  @media (hover: hover) {
+    &:hover {
+      border: 2px solid var(--border);
+      border-radius: 10px;
+    }
+  }
 }
 
 .link {
@@ -85,4 +96,8 @@
   @media screen and (width >= 768px) {
     font-size: 1.4rem;
   }
+}
+
+.isCurrent {
+  border-bottom: 2px solid var(--forcus-border);
 }

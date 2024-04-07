@@ -86,8 +86,10 @@
     outline: 0;
   }
 
-  &:hover {
-    background-color: var(--forcus-background);
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--forcus-background);
+    }
   }
 }
 

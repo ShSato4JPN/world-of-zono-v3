@@ -54,9 +54,11 @@
   display: inline-block;
   font-size: 2rem;
 
-  &:hover {
-    text-decoration: underline;
-    text-underline-offset: 5px;
+  @media (hover: hover) {
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 5px;
+    }
   }
 }
 

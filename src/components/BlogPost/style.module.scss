@@ -19,6 +19,20 @@
   gap: 5px;
 }
 
+.bookmark {
+  cursor: pointer;
+
+  position: absolute;
+  top: -2px;
+  right: 0;
+
+  font-size: 2.5rem;
+}
+
+.bookmarked {
+  color: var(--bookmark);
+}
+
 .title {
   margin-bottom: 5px;
   font-size: 2.5rem;
@@ -48,9 +62,11 @@
   border: 1px solid var(--border);
   border-radius: 8px;
 
-  &:hover {
-    background-color: var(--forcus-background);
-    border: 1px solid var(--forcus-border);
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--forcus-background);
+      border: 1px solid var(--forcus-border);
+    }
   }
 
   @media (width >= 428px) {
@@ -68,19 +84,5 @@
     content: "";
     margin: 7px 0 12px;
     border-top: 1px solid var(--border);
-  }
-
-  .bookmark {
-    cursor: pointer;
-
-    position: absolute;
-    top: -2px;
-    right: 0;
-
-    font-size: 2.5rem;
-  }
-
-  .bookmarked {
-    color: orange;
   }
 }

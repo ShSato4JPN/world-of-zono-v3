@@ -15,12 +15,6 @@ import styles from "./style.module.scss";
 export default function Header() {
   const pathname = usePathname();
 
-  const currentStype = {
-    style: {
-      borderBottom: "2px solid #ffa200",
-    },
-  };
-
   const menuList = useMemo(
     () => [
       { key: "blog", icon: <GoBook />, label: "Blog", path: "/blog" },
@@ -44,19 +38,18 @@ export default function Header() {
   const items = useMemo<JSX.Element[]>(
     () =>
       menuList.map((item) => (
-        <Link className={styles.linkField} href={item.path} key={item.key}>
-          <div className={styles.icon}>{item.icon}</div>
+        <div className={styles.linkField} key={item.key}>
+          <Link href={item.path}>
+            <div className={styles.icon}>{item.icon}</div>
+          </Link>
           <div
-            className={styles.link}
-            style={
-              pathname.includes(item.path) ? { ...currentStype.style } : {}
-            }
+            className={`${styles.link} ${pathname.includes(item.path) ? styles.isCurrent : ""}`}
           >
             {item.label}
           </div>
-        </Link>
+        </div>
       )),
-    [currentStype.style, menuList, pathname],
+    [menuList, pathname],
   );
 
   return (
@@ -67,7 +60,7 @@ export default function Header() {
         </Link>
         <nav className={styles.links}>
           {items}
-          <div className={styles.linkField} key={"theme"}>
+          <div className={styles.linkField}>
             <div className={styles.icon}>
               <ThemeToggle />
             </div>

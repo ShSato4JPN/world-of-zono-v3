@@ -118,7 +118,7 @@ export default function BookmarkTop({ ids }: BookmarkProps) {
             visible={true}
             height="80"
             width="80"
-            color="#944848"
+            color="#ffe100"
             radius="9"
             ariaLabel="three-dots-loading"
           />
