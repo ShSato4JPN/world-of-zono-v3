@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 import client from "@/libs/client";
 
-export type BlogPostsSkeleton = {
+export type BlogPostSkeleton = {
   contentTypeId: "worldOfZono";
   fields: {
     title: contentful.EntryFieldTypes.Text;
@@ -13,14 +13,14 @@ export type BlogPostsSkeleton = {
   };
 };
 
-export type BlogPostsData = contentful.EntryCollection<BlogPostsSkeleton>;
+export type BlogPostsData = contentful.EntryCollection<BlogPostSkeleton>;
 
 export async function GET(req: Request): Promise<NextResponse<BlogPostsData>> {
   const { searchParams } = await new URL(req.url);
   const limit = Number(searchParams.get("limit") || 0);
   const skip = Number(searchParams.get("skip") || 0);
 
-  const entries = await client.getEntries<BlogPostsSkeleton>({
+  const entries = await client.getEntries<BlogPostSkeleton>({
     content_type: "worldOfZono",
     order: ["-fields.publishedAt"],
     limit,

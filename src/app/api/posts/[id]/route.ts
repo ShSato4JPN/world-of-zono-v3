@@ -4,22 +4,26 @@ import { NextResponse } from "next/server";
 import client from "@/libs/client";
 
 export type BlogPostSkeleton = {
-  contentTypeId: "worldOfZonoV2";
+  contentTypeId: "worldOfZono";
   fields: {
     title: contentful.EntryFieldTypes.Text;
-    publishedAt: contentful.EntryFieldTypes.Date;
     body: contentful.EntryFieldTypes.Text;
+    publishedAt: contentful.EntryFieldTypes.Date;
     tags: contentful.EntryFieldTypes.Array<contentful.EntryFieldTypes.Symbol>;
   };
 };
 
-export type BlogPostData = contentful.Entry<BlogPostSkeleton>;
+// Bookmark 機能を実装するため、基本的に getEntries でデータを取得して、フロント側で生合成を取る
+//export type BlogPostData = contentful.Entry<BlogPostSkeleton>;
+export type BlogPostsData = contentful.EntryCollection<BlogPostSkeleton>;
 
 export async function GET(
   _: Request,
-  { params }: { params: { id: string } },
-): Promise<NextResponse<BlogPostData>> {
-  const entry = await client.getEntry<BlogPostSkeleton>(params.id);
+  { params: { id } }: { params: { id: string } },
+): Promise<NextResponse<BlogPostsData>> {
+  const entry = await client.getEntries<BlogPostSkeleton>({
+    "sys.id[in]": id.split(","),
+  });
 
   return NextResponse.json(entry);
 }

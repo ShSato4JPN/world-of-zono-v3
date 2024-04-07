@@ -7,7 +7,7 @@
   padding: 0 8px;
 }
 
-.blogTop {
+.bookmarkTop {
   max-width: 980px;
 }
 
@@ -79,4 +79,11 @@
   font-size: 1.5rem;
 
   -webkit-line-clamp: 4;
+}
+
+.description {
+  display: grid;
+  place-items: center;
+  height: 80vh;
+  font-size: 1.5rem;
 }
