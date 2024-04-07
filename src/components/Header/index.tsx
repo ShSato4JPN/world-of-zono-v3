@@ -17,7 +17,7 @@ export default function Header() {
 
   const currentStype = {
     style: {
-      borderBottom: "2px solid #a52a2a",
+      borderBottom: "2px solid #ffa200",
     },
   };
 
@@ -34,7 +34,7 @@ export default function Header() {
         key: "bookmark",
         icon: <FaRegStar />,
         label: "Bookmark",
-        path: "/",
+        path: "/bookmark",
       },
       { key: "contact", icon: <GoMail />, label: "Contact", path: "/contact" },
     ],
@@ -48,7 +48,9 @@ export default function Header() {
           <div className={styles.icon}>{item.icon}</div>
           <div
             className={styles.link}
-            style={pathname === item.path ? { ...currentStype.style } : {}}
+            style={
+              pathname.includes(item.path) ? { ...currentStype.style } : {}
+            }
           >
             {item.label}
           </div>
