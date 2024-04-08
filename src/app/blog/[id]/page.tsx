@@ -30,8 +30,8 @@ export async function generateMetadata({ params: { id } }: PageProps) {
 
   const fields = post.items.at(0)?.fields;
   const title = fields?.title as string;
-  const description = removeTagString(fields?.body as string).slice(0, 100);
-  const url = "";
+  const description = removeTagString(fields?.body as string).slice(0, 50);
+  const url = "/og-image.webp";
 
   return {
     title,
@@ -43,8 +43,8 @@ export async function generateMetadata({ params: { id } }: PageProps) {
       images: {
         url: url,
         alt: "サイトイメージ",
-        width: "400",
-        height: "200",
+        width: "1200",
+        height: "640",
       },
     },
   };
