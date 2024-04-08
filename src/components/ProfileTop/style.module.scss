@@ -50,7 +50,7 @@
 
 .message {
   margin-bottom: 30px;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   text-align: center;
 }
 
@@ -64,7 +64,7 @@
 .icon {
   @media (hover: hover) {
     &:hover {
-      color: var(--bookmark);
+      color: var(--focus-background);
     }
   }
 }

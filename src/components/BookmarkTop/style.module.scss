@@ -47,11 +47,12 @@
 }
 
 .bookmarked {
-  color: orange;
+  color: var(--bookmark);
 }
 
 .title {
   display: inline-block;
+  width: fit-content;
   font-size: 2rem;
 
   @media (hover: hover) {
@@ -74,7 +75,9 @@
   border-radius: 8px;
 
   &:hover {
-    background-color: var(--tag-hover);
+    color: var(--focus-color);
+    background-color: var(--focus-background);
+    border: 1px solid var(--focus-border);
   }
 }
 

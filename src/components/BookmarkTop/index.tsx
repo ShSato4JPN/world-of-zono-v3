@@ -43,7 +43,7 @@ export default function BookmarkTop({ ids }: BookmarkProps) {
   const addCookie = useMemo(
     () => (id: string) => {
       const data = JSON.parse(cookies || "[]") as Array<string>;
-      setCookie("bookmark", [...data, id]);
+      setCookie("bookmark", [...data, id], { maxAge: 60 * 60 * 24 * 180 });
       setRefresh(() => !refresh);
     },
     [cookies, refresh],

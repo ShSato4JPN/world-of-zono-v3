@@ -22,7 +22,7 @@
 .publishedGroup {
   margin-bottom: 3rem;
   padding: 5px;
-  border-left: 6px solid var(--forcus-background);
+  border-left: 6px solid var(--focus-background);
 }
 
 .subtitle {
@@ -65,7 +65,8 @@
 
 .title {
   display: inline-block;
-  width: 90%;
+  width: fit-content;
+  max-width: 90%;
   font-size: 2rem;
 
   @media (hover: hover) {
@@ -88,8 +89,9 @@
   border-radius: 8px;
 
   &:hover {
-    background-color: var(--forcus-background);
-    border: 1px solid var(--forcus-border);
+    color: var(--focus-color);
+    background-color: var(--focus-background);
+    border: 1px solid var(--focus-border);
   }
 }
 

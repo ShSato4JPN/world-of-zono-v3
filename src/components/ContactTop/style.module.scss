@@ -43,7 +43,7 @@
     border-radius: 5px;
 
     &:focus {
-      border: 1px solid var(--forcus-border);
+      border: 1px solid var(--focus-border);
       outline: 0;
     }
   }
@@ -60,7 +60,7 @@
     outline: 0;
 
     &:focus {
-      border: 1px solid var(--forcus-border);
+      border: 1px solid var(--focus-border);
       outline: 0;
     }
   }
@@ -82,13 +82,13 @@
   border-radius: 5px;
 
   &:focus {
-    border: 1px solid var(--forcus-border);
+    border: 1px solid var(--focus-border);
     outline: 0;
   }
 
   @media (hover: hover) {
     &:hover {
-      background-color: var(--forcus-background);
+      background-color: var(--focus-background);
     }
   }
 }

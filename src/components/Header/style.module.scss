@@ -19,16 +19,19 @@
 
 .siteName {
   display: none;
+  width: fit-content;
   padding: none;
   white-space: nowrap;
 
   @media (width >= 428px) {
     display: block;
     font-size: 3.4rem;
+    font-weight: 700;
   }
 
   @media screen and (width >= 768px) {
-    font-size: 4rem;
+    font-size: 4.2rem;
+    font-weight: 700;
   }
 }
 
@@ -99,5 +102,5 @@
 }
 
 .isCurrent {
-  border-bottom: 2px solid var(--forcus-border);
+  border-bottom: 2px solid var(--focus-border);
 }

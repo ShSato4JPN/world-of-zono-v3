@@ -34,6 +34,7 @@
 }
 
 .title {
+  width: fit-content;
   margin-bottom: 5px;
   font-size: 2.5rem;
 
@@ -64,13 +65,10 @@
 
   @media (hover: hover) {
     &:hover {
-      background-color: var(--forcus-background);
-      border: 1px solid var(--forcus-border);
+      color: var(--focus-color);
+      background-color: var(--focus-background);
+      border: 1px solid var(--focus-border);
     }
-  }
-
-  @media (width >= 428px) {
-    font-size: 1.4rem;
   }
 }
 

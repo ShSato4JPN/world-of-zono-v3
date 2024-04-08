@@ -1,6 +1,7 @@
 import { BlogPostsData } from "@/app/api/posts/[id]/route";
 import BlogPost from "@/components/BlogPost";
 import SwrConfig from "@/components/SwrConfig";
+import { removeTagString } from "@/libs/utils";
 
 type PageProps = {
   params: { id: string };
@@ -22,4 +23,29 @@ export default async function Page({ params: { id } }: PageProps) {
       <BlogPost id={id} />
     </SwrConfig>
   );
+}
+
+export async function generateMetadata({ params: { id } }: PageProps) {
+  const post = await getPost(id);
+
+  const fields = post.items.at(0)?.fields;
+  const title = fields?.title as string;
+  const description = removeTagString(fields?.body as string).slice(0, 100);
+  const url = "";
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      siteName: "World Of Zono",
+      images: {
+        url: url,
+        alt: "サイトイメージ",
+        width: "400",
+        height: "200",
+      },
+    },
+  };
 }

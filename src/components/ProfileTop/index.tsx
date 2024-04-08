@@ -9,10 +9,22 @@ import styles from "./style.module.scss";
 
 export default function ProfileTop() {
   const snsList = [
-    { url: "", icon: <FaXTwitter className={styles.icon} /> },
-    { url: "", icon: <FaGithub className={styles.icon} /> },
-    { url: "", icon: <FaSquareThreads className={styles.icon} /> },
-    { url: "", icon: <SiWantedly className={styles.icon} /> },
+    {
+      url: "https://twitter.com/zonono3104",
+      icon: <FaXTwitter className={styles.icon} />,
+    },
+    {
+      url: "https://github.com/ShSato4JPN",
+      icon: <FaGithub className={styles.icon} />,
+    },
+    {
+      url: "https://www.threads.net/@satoshi1221_jp",
+      icon: <FaSquareThreads className={styles.icon} />,
+    },
+    {
+      url: "https://www.wantedly.com/id/satoshi_hokazono",
+      icon: <SiWantedly className={styles.icon} />,
+    },
   ];
 
   return (
