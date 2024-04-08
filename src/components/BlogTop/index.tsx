@@ -61,44 +61,47 @@ export default function BlogTop() {
   const posts = useMemo<JSX.Element[]>(
     () =>
       data
-        ?.map(({ items }) =>
-          items.map(({ sys, fields }) => {
-            const id = sys.id as string;
-            const title = fields.title as string;
-            const body = fields.body as string;
-            const tags = fields.tags as string[];
-            const publishedAt = fields.publishedAt as string;
-            const bookmarked = cookies?.includes(id) || false;
+        ?.map(
+          ({ items }) =>
+            items
+              .map(({ sys, fields }) => {
+                const id = sys.id as string;
+                const title = fields.title as string;
+                const body = fields.body as string;
+                const tags = fields.tags as string[];
+                const publishedAt = fields.publishedAt as string;
+                const bookmarked = cookies?.includes(id) || false;
 
-            return (
-              <div className={styles.post} key={id}>
-                <div className={styles.publishedAt}>
-                  {dayjs(publishedAt).format("YYYY/MM/DD")}
-                </div>
-                <div className={styles.bookmark}>
-                  {bookmarked ? (
-                    <FaStar
-                      className={styles.bookmarked}
-                      onClick={() => deleteCookie(id)}
-                    />
-                  ) : (
-                    <FaRegStar onClick={() => addCookie(id)} />
-                  )}
-                </div>
-                <h1 className={styles.title}>
-                  <Link href={`/blog/${id}`}>{title}</Link>
-                </h1>
-                <div className={styles.tags}>
-                  {tags.map((tag) => (
-                    <Link href={`/tag/${tag}`} key={tag}>
-                      <div className={styles.tag}>{tag}</div>
-                    </Link>
-                  ))}
-                </div>
-                <div className={styles.body}>{removeTagString(body)}</div>
-              </div>
-            );
-          }),
+                return (
+                  <div className={styles.post} key={id}>
+                    <div className={styles.publishedAt}>
+                      {dayjs(publishedAt).format("YYYY/MM/DD")}
+                    </div>
+                    <div className={styles.bookmark}>
+                      {bookmarked ? (
+                        <FaStar
+                          className={styles.bookmarked}
+                          onClick={() => deleteCookie(id)}
+                        />
+                      ) : (
+                        <FaRegStar onClick={() => addCookie(id)} />
+                      )}
+                    </div>
+                    <h1 className={styles.title}>
+                      <Link href={`/blog/${id}`}>{title}</Link>
+                    </h1>
+                    <div className={styles.tags}>
+                      {tags.map((tag) => (
+                        <Link href={`/tag/${tag}`} key={tag}>
+                          <div className={styles.tag}>{tag}</div>
+                        </Link>
+                      ))}
+                    </div>
+                    <div className={styles.body}>{removeTagString(body)}</div>
+                  </div>
+                );
+              })
+              .flat() || [],
         )
         .flat() || [],
     [addCookie, cookies, data, deleteCookie],

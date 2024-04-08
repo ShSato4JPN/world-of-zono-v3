@@ -109,7 +109,7 @@ export default function WozTop() {
             </div>
           );
         })
-        .flat(),
+        .flat() || [],
     [addCookie, cookies, data?.items, deleteCookie, publishedAtList],
   );
 
