@@ -30,6 +30,25 @@ export default function ContactTop() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.contactTop}>
+        <span
+          style={{
+            textAlign: "center",
+            display: "grid",
+            placeItems: "center",
+            fontSize: "3rem",
+          }}
+        >
+          🚧 準備中です 🚧
+          <br />
+          暫しお待ちください!
+        </span>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.contactTop}>
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.formItem}>
             <div className={styles.itemLabel}>

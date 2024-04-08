@@ -1,33 +1,32 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
 import transporter from "@/libs/nodemailer-client";
 
 type ApiProps = {
-  slug: {
-    email: string;
-    subject: string;
-    text: string;
-  };
+  email: string;
+  subject: string;
+  text: string;
 };
 
-interface ExtendsNextApiRequest extends NextApiRequest {
-  body: ApiProps;
-}
+type ApiResponse = {
+  message: "success" | "error";
+};
 
-export default async function handler(
-  req: ExtendsNextApiRequest,
-  res: NextApiResponse,
-) {
+export async function POST(
+  req: NextRequest,
+): Promise<NextResponse<ApiResponse>> {
   try {
+    const { email, subject, text } = (await req.json()) as ApiProps;
+
     await transporter.sendMail({
       to: process.env.NODEMAILER_EMAIL,
-      replyTo: req.body.slug.email,
-      subject: req.body.slug.subject,
-      text: `${req.body.slug.email}\n${req.body.slug.text}`,
+      replyTo: email,
+      subject: subject,
+      text: `${email}\n${text}`,
     });
 
-    res.status(200).json({ message: "ok" });
+    return NextResponse.json({ message: "success" });
   } catch (error) {
-    res.status(500).json({ message: "error" });
+    return NextResponse.json({ message: "error" });
   }
 }
