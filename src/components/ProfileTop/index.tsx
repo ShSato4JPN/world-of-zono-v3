@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa6";
 import { FaSquareThreads } from "react-icons/fa6";
@@ -52,9 +51,9 @@ export default function ProfileTop() {
           </div>
           <div className={styles.sns}>
             {snsList.map((sns) => (
-              <Link href={sns.url} key={sns.url}>
+              <a href={sns.url} key={sns.url} target="_blank" rel="noopener">
                 {sns.icon}
-              </Link>
+              </a>
             ))}
           </div>
         </div>
