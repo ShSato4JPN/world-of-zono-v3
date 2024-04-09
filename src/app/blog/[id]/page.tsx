@@ -31,7 +31,7 @@ export async function generateMetadata({ params: { id } }: PageProps) {
   const fields = post.items.at(0)?.fields;
   const title = fields?.title as string;
   const description = removeTagString(fields?.body as string).slice(0, 50);
-  const url = "/og-image.webp";
+  const url = `${process.env.NEXT_PUBLIC_URL}/og-image.webp`;
 
   return {
     title,

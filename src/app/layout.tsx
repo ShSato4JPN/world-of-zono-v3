@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "いろいろなことを書いていくゆる〜いブログです。",
     siteName: "World Of Zono",
     images: {
-      url: "/og-image.webp",
+      url: `${process.env.NEXT_PUBLIC_URL}/og-image.webp`,
       alt: "サイトイメージ",
       width: "1200",
       height: "630",

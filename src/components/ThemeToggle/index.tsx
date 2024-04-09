@@ -18,7 +18,6 @@ export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState<boolean>(false);
 
-  console.log(theme);
   const themeIcon = useMemo(() => {
     switch (theme) {
       case "light":
