@@ -1,8 +1,8 @@
 import queryString from "query-string";
 
 import { BlogPostsData } from "@/app/api/posts/route";
+import BlogTop from "@/components/BlogTop";
 import SwrConfig from "@/components/SwrConfig";
-import WozTop from "@/components/WozTop";
 
 async function getPosts(limit: number, skip: number): Promise<BlogPostsData> {
   const res = await fetch(
@@ -21,14 +21,14 @@ async function getPosts(limit: number, skip: number): Promise<BlogPostsData> {
 }
 
 export default async function Page() {
-  const limit = 5;
+  const limit = 10;
   const skip = 0;
 
   const posts = await getPosts(limit, skip);
 
   return (
-    <SwrConfig value={{ fallbackData: posts }}>
-      <WozTop />
+    <SwrConfig value={{ fallbackData: [posts] }}>
+      <BlogTop />
     </SwrConfig>
   );
 }
