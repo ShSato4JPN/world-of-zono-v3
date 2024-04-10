@@ -15,7 +15,7 @@ async function getPosts(
 ): Promise<BlogPostsData> {
   const res = await fetch(
     queryString.stringifyUrl({
-      url: `${process.env.NEXT_PUBLIC_URL}/api/posts/tags/${name}`,
+      url: `${process.env.NEXT_PUBLIC_URL}/api/tags/${name}`,
       query: {
         skip,
         limit,

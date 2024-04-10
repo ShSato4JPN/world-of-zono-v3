@@ -32,7 +32,7 @@ export default function BlogTags({ name }: BlogTagsProps) {
     return previousPageData && !previousPageData.items.length
       ? null
       : queryString.stringifyUrl({
-          url: `${process.env.NEXT_PUBLIC_URL}/api/posts/tags/${name}`,
+          url: `${process.env.NEXT_PUBLIC_URL}/api/tags/${name}`,
           query: {
             skip: pageIndex * 10,
             limit: 10,
