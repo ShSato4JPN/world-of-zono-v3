@@ -9,3 +9,15 @@ li {
 p {
   line-height: 1.6;
 }
+
+.youtube {
+  text-align: center;
+  width: 100%;
+}
+
+.youtube iframe {
+  max-width: 600px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
