@@ -18,23 +18,28 @@ import { removeTagString } from "@/libs/utils";
 
 import styles from "./style.module.scss";
 
-const getKey: SWRInfiniteKeyLoader<BlogPostsData> = (
-  pageIndex,
-  previousPageData,
-) => {
-  return previousPageData && !previousPageData.items.length
-    ? null
-    : queryString.stringifyUrl({
-        url: `${process.env.NEXT_PUBLIC_URL}/api/posts`,
-        query: {
-          skip: pageIndex * 10,
-          limit: 10,
-        },
-      });
+type BlogTagsProps = {
+  name: string;
 };
 
-export default function BlogTop() {
+export default function BlogTags({ name }: BlogTagsProps) {
   const cookies = getCookie("bookmark");
+
+  const getKey: SWRInfiniteKeyLoader<BlogPostsData> = (
+    pageIndex,
+    previousPageData,
+  ) => {
+    return previousPageData && !previousPageData.items.length
+      ? null
+      : queryString.stringifyUrl({
+          url: `${process.env.NEXT_PUBLIC_URL}/api/posts/tags/${name}`,
+          query: {
+            skip: pageIndex * 10,
+            limit: 10,
+          },
+        });
+  };
+
   const { data, size, setSize } = useSWRInfinite<BlogPostsData>(
     getKey,
     fetcher,
@@ -123,7 +128,8 @@ export default function BlogTop() {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.blogTop}>
+      <div className={styles.blogTags}>
+        <h1 className={styles.selectTag}>Tag : {decodeURIComponent(name)}</h1>
         {isPreRender ? (
           <div className={styles.loading}>
             <ThreeDots

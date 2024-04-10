@@ -89,7 +89,7 @@ export default function BookmarkTop({ ids }: BookmarkProps) {
               </h1>
               <div className={styles.tags}>
                 {tags.map((tag) => (
-                  <Link href={`/tag/${tag}`} key={tag}>
+                  <Link href={`/blog/tag/${tag}`} key={tag}>
                     <div className={styles.tag}>{tag}</div>
                   </Link>
                 ))}
