@@ -108,3 +108,9 @@
 
   -webkit-line-clamp: 4;
 }
+
+.loading {
+  display: grid;
+  place-items: center;
+  height: 70vh;
+}

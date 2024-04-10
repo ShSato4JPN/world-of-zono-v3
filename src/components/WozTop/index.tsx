@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useCallback, useState, useEffect } from "react";
+import { ThreeDots } from "react-loader-spinner";
 
 import { setCookie, getCookie } from "cookies-next";
 import dayjs from "dayjs";
@@ -30,9 +31,11 @@ export default function WozTop() {
   );
   // ブックマークの更新時に再レンダリングするためのフラグ(Cookie を更新しても際レンダリングされないため)
   const [refresh, setRefresh] = useState<boolean>(false);
+  // cookie の影響による react-hydration-error 対策
+  const [isPreRender, setIsPreRender] = useState<boolean>(true);
 
-  const addCookie = useMemo(
-    () => (id: string) => {
+  const addCookie = useCallback(
+    (id: string) => {
       const data = JSON.parse(cookies || "[]") as Array<string>;
       setCookie("bookmark", [...data, id], { maxAge: 60 * 60 * 24 * 180 });
       setRefresh(() => !refresh);
@@ -40,8 +43,8 @@ export default function WozTop() {
     [cookies, refresh],
   );
 
-  const deleteCookie = useMemo(
-    () => (id: string) => {
+  const deleteCookie = useCallback(
+    (id: string) => {
       const data = JSON.parse(cookies || "[]") as Array<string>;
       setCookie("bookmark", [...data.filter((v: string) => v !== id)]);
       setRefresh(() => !refresh);
@@ -105,7 +108,7 @@ export default function WozTop() {
                     <div className={styles.body}>{removeTagString(body)}</div>
                   </div>
                 );
-              }) || []}
+              })}
             </div>
           );
         })
@@ -113,11 +116,30 @@ export default function WozTop() {
     [addCookie, cookies, data?.items, deleteCookie, publishedAtList],
   );
 
+  useEffect(() => {
+    setIsPreRender(false);
+  }, []);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.wozTop}>
-        <h1 className={styles.latest}>Latest</h1>
-        {posts}
+        {isPreRender ? (
+          <div className={styles.loading}>
+            <ThreeDots
+              visible={true}
+              height="70"
+              width="70"
+              color="#996b3f"
+              radius="9"
+              ariaLabel="three-dots-loading"
+            />
+          </div>
+        ) : (
+          <>
+            <h1 className={styles.latest}>Latest</h1>
+            {posts}
+          </>
+        )}
       </div>
     </div>
   );

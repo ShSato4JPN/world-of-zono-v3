@@ -1,6 +1,8 @@
 "use client";
-import { useCallback, useMemo, useState } from "react";
+
+import { useCallback, useMemo, useState, useEffect } from "react";
 import InfiniteScroll, { Props } from "react-infinite-scroll-component";
+import { ThreeDots } from "react-loader-spinner";
 
 import { setCookie, getCookie } from "cookies-next";
 import dayjs from "dayjs";
@@ -39,9 +41,11 @@ export default function BlogTop() {
   );
   // ブックマークの更新時に再レンダリングするためのフラグ(Cookie を更新しても際レンダリングされないため)
   const [refresh, setRefresh] = useState<boolean>(false);
+  // cookie の影響による react-hydration-error 対策
+  const [isPreRender, setIsPreRender] = useState<boolean>(true);
 
-  const addCookie = useMemo(
-    () => (id: string) => {
+  const addCookie = useCallback(
+    (id: string) => {
       const data = JSON.parse(cookies || "[]") as Array<string>;
       setCookie("bookmark", [...data, id], { maxAge: 60 * 60 * 24 * 180 });
       setRefresh(() => !refresh);
@@ -49,8 +53,8 @@ export default function BlogTop() {
     [cookies, refresh],
   );
 
-  const deleteCookie = useMemo(
-    () => (id: string) => {
+  const deleteCookie = useCallback(
+    (id: string) => {
       const data = JSON.parse(cookies || "[]") as Array<string>;
       setCookie("bookmark", [...data.filter((v: string) => v !== id)]);
       setRefresh(() => !refresh);
@@ -61,47 +65,44 @@ export default function BlogTop() {
   const posts = useMemo<JSX.Element[]>(
     () =>
       data
-        ?.map(
-          ({ items }) =>
-            items
-              .map(({ sys, fields }) => {
-                const id = sys.id as string;
-                const title = fields.title as string;
-                const body = fields.body as string;
-                const tags = fields.tags as string[];
-                const publishedAt = fields.publishedAt as string;
-                const bookmarked = cookies?.includes(id) || false;
+        ?.map(({ items }) =>
+          items.map(({ sys, fields }) => {
+            const id = sys.id as string;
+            const title = fields.title as string;
+            const body = fields.body as string;
+            const tags = fields.tags as string[];
+            const publishedAt = fields.publishedAt as string;
+            const bookmarked = cookies?.includes(id) || false;
 
-                return (
-                  <div className={styles.post} key={id}>
-                    <div className={styles.publishedAt}>
-                      {dayjs(publishedAt).format("YYYY/MM/DD")}
-                    </div>
-                    <div className={styles.bookmark}>
-                      {bookmarked ? (
-                        <FaStar
-                          className={styles.bookmarked}
-                          onClick={() => deleteCookie(id)}
-                        />
-                      ) : (
-                        <FaRegStar onClick={() => addCookie(id)} />
-                      )}
-                    </div>
-                    <h1 className={styles.title}>
-                      <Link href={`/blog/${id}`}>{title}</Link>
-                    </h1>
-                    <div className={styles.tags}>
-                      {tags.map((tag) => (
-                        <Link href={`/tag/${tag}`} key={tag}>
-                          <div className={styles.tag}>{tag}</div>
-                        </Link>
-                      ))}
-                    </div>
-                    <div className={styles.body}>{removeTagString(body)}</div>
-                  </div>
-                );
-              })
-              .flat() || [],
+            return (
+              <div className={styles.post} key={id}>
+                <div className={styles.publishedAt}>
+                  {dayjs(publishedAt).format("YYYY/MM/DD")}
+                </div>
+                <div className={styles.bookmark}>
+                  {bookmarked ? (
+                    <FaStar
+                      className={styles.bookmarked}
+                      onClick={() => deleteCookie(id)}
+                    />
+                  ) : (
+                    <FaRegStar onClick={() => addCookie(id)} />
+                  )}
+                </div>
+                <h1 className={styles.title}>
+                  <Link href={`/blog/${id}`}>{title}</Link>
+                </h1>
+                <div className={styles.tags}>
+                  {tags.map((tag) => (
+                    <Link href={`/tag/${tag}`} key={tag}>
+                      <div className={styles.tag}>{tag}</div>
+                    </Link>
+                  ))}
+                </div>
+                <div className={styles.body}>{removeTagString(body)}</div>
+              </div>
+            );
+          }),
         )
         .flat() || [],
     [addCookie, cookies, data, deleteCookie],
@@ -116,18 +117,35 @@ export default function BlogTop() {
     [data, posts.length],
   );
 
+  useEffect(() => {
+    setIsPreRender(false);
+  }, []);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.blogTop}>
-        <InfiniteScroll
-          className="posts"
-          dataLength={posts.length}
-          next={next}
-          hasMore={hasMore}
-          loader={<div className={styles.loaderWrapper}>Loading...</div>}
-        >
-          {posts}
-        </InfiniteScroll>
+        {isPreRender ? (
+          <div className={styles.loading}>
+            <ThreeDots
+              visible={true}
+              height="70"
+              width="70"
+              color="#996b3f"
+              radius="9"
+              ariaLabel="three-dots-loading"
+            />
+          </div>
+        ) : (
+          <InfiniteScroll
+            className="posts"
+            dataLength={posts.length}
+            next={next}
+            hasMore={hasMore}
+            loader={<div className={styles.loaderWrapper}>Loading...</div>}
+          >
+            {posts}
+          </InfiniteScroll>
+        )}
       </div>
     </div>
   );
