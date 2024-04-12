@@ -2,19 +2,19 @@ import { NextRequest, NextResponse } from "next/server";
 
 import transporter from "@/libs/nodemailer-client";
 
+export type NodeMailerResponse = {
+  message: "success" | "error";
+};
+
 type ApiProps = {
   email: string;
   subject: string;
   text: string;
 };
 
-type ApiResponse = {
-  message: "success" | "error";
-};
-
 export async function POST(
   req: NextRequest,
-): Promise<NextResponse<ApiResponse>> {
+): Promise<NextResponse<NodeMailerResponse>> {
   try {
     const { email, subject, text } = (await req.json()) as ApiProps;
 
@@ -22,7 +22,7 @@ export async function POST(
       to: process.env.NODEMAILER_EMAIL,
       replyTo: email,
       subject: subject,
-      text: `${email}\n${text}`,
+      text: `from: ${email}\nbody: ${text}`,
     });
 
     return NextResponse.json({ message: "success" });
