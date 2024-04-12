@@ -1,9 +1,8 @@
 "use client";
 
-import { useMemo, useCallback, useState, useEffect } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { ThreeDots } from "react-loader-spinner";
 
-import { setCookie, getCookie } from "cookies-next";
 import dayjs from "dayjs";
 import Link from "next/link";
 import queryString from "query-string";
@@ -12,13 +11,14 @@ import { FaStar } from "react-icons/fa";
 import useSWR from "swr";
 
 import { BlogPostsData } from "@/app/api/posts/route";
+import useCookie from "@/hooks/useCookie";
 import fetcher from "@/libs/fetcher";
 import { removeTagString } from "@/libs/utils";
 
 import styles from "./style.module.scss";
 
 export default function WozTop() {
-  const cookies = getCookie("bookmark");
+  const { cookies, saveBookmarkCookie, deleteBookmarkCookie } = useCookie();
   const { data } = useSWR<BlogPostsData>(
     queryString.stringifyUrl({
       url: `${process.env.NEXT_PUBLIC_URL}/api/posts`,
@@ -29,28 +29,8 @@ export default function WozTop() {
     }),
     fetcher,
   );
-  // ブックマークの更新時に再レンダリングするためのフラグ(Cookie を更新しても際レンダリングされないため)
-  const [refresh, setRefresh] = useState<boolean>(false);
   // cookie の影響による react-hydration-error 対策
   const [isPreRender, setIsPreRender] = useState<boolean>(true);
-
-  const addCookie = useCallback(
-    (id: string) => {
-      const data = JSON.parse(cookies || "[]") as Array<string>;
-      setCookie("bookmark", [...data, id], { maxAge: 60 * 60 * 24 * 180 });
-      setRefresh(() => !refresh);
-    },
-    [cookies, refresh],
-  );
-
-  const deleteCookie = useCallback(
-    (id: string) => {
-      const data = JSON.parse(cookies || "[]") as Array<string>;
-      setCookie("bookmark", [...data.filter((v: string) => v !== id)]);
-      setRefresh(() => !refresh);
-    },
-    [cookies, refresh],
-  );
 
   // 公開日をグルーピングする
   const publishedAtList = useMemo(
@@ -89,10 +69,10 @@ export default function WozTop() {
                       {bookmarked ? (
                         <FaStar
                           className={styles.bookmarked}
-                          onClick={() => deleteCookie(id)}
+                          onClick={() => deleteBookmarkCookie(id)}
                         />
                       ) : (
-                        <FaRegStar onClick={() => addCookie(id)} />
+                        <FaRegStar onClick={() => saveBookmarkCookie(id)} />
                       )}
                     </div>
                     <h1 className={styles.title}>
@@ -113,7 +93,13 @@ export default function WozTop() {
           );
         })
         .flat() || [],
-    [addCookie, cookies, data?.items, deleteCookie, publishedAtList],
+    [
+      cookies,
+      data?.items,
+      deleteBookmarkCookie,
+      publishedAtList,
+      saveBookmarkCookie,
+    ],
   );
 
   useEffect(() => {

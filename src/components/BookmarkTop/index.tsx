@@ -1,15 +1,15 @@
 "use client";
 
-import { useEffect, useCallback, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 
-import { setCookie, getCookie } from "cookies-next";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { FaRegStar } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 
 import { BlogPostsData } from "@/app/api/posts/[id]/route";
+import useCookie from "@/hooks/useCookie";
 import { removeTagString } from "@/libs/utils";
 
 import styles from "./style.module.scss";
@@ -19,10 +19,8 @@ type BookmarkProps = {
 };
 
 export default function BookmarkTop({ ids }: BookmarkProps) {
-  const cookies = getCookie("bookmark");
+  const { cookies, saveBookmarkCookie, deleteBookmarkCookie } = useCookie();
   const [data, setData] = useState<BlogPostsData | undefined>();
-  // ブックマークの更新時に再レンダリングするためのフラグ(Cookie を更新しても際レンダリングされないため)
-  const [refresh, setRefresh] = useState<boolean>(false);
 
   useEffect(() => {
     const dataFetch = async () => {
@@ -39,24 +37,6 @@ export default function BookmarkTop({ ids }: BookmarkProps) {
 
     dataFetch();
   }, [cookies, ids]);
-
-  const addCookie = useCallback(
-    (id: string) => {
-      const data = JSON.parse(cookies || "[]") as Array<string>;
-      setCookie("bookmark", [...data, id], { maxAge: 60 * 60 * 24 * 180 });
-      setRefresh(() => !refresh);
-    },
-    [cookies, refresh],
-  );
-
-  const deleteCookie = useCallback(
-    (id: string) => {
-      const data = JSON.parse(cookies || "[]") as Array<string>;
-      setCookie("bookmark", [...data.filter((v: string) => v !== id)]);
-      setRefresh(() => !refresh);
-    },
-    [cookies, refresh],
-  );
 
   const posts = useMemo<JSX.Element[]>(
     () =>
@@ -78,10 +58,10 @@ export default function BookmarkTop({ ids }: BookmarkProps) {
                 {bookmarked ? (
                   <FaStar
                     className={styles.bookmarked}
-                    onClick={() => deleteCookie(id)}
+                    onClick={() => deleteBookmarkCookie(id)}
                   />
                 ) : (
-                  <FaRegStar onClick={() => addCookie(id)} />
+                  <FaRegStar onClick={() => saveBookmarkCookie(id)} />
                 )}
               </div>
               <h1 className={styles.title}>
@@ -99,7 +79,7 @@ export default function BookmarkTop({ ids }: BookmarkProps) {
           );
         })
         .flat() || [],
-    [addCookie, cookies, data?.items, deleteCookie],
+    [cookies, data?.items, deleteBookmarkCookie, saveBookmarkCookie],
   );
 
   const Description = (): JSX.Element => {

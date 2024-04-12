@@ -4,7 +4,6 @@ import { useCallback, useMemo, useState, useEffect } from "react";
 import InfiniteScroll, { Props } from "react-infinite-scroll-component";
 import { ThreeDots } from "react-loader-spinner";
 
-import { setCookie, getCookie } from "cookies-next";
 import dayjs from "dayjs";
 import Link from "next/link";
 import queryString from "query-string";
@@ -13,6 +12,7 @@ import { FaStar } from "react-icons/fa";
 import useSWRInfinite, { SWRInfiniteKeyLoader } from "swr/infinite";
 
 import { BlogPostsData } from "@/app/api/posts/route";
+import useCookie from "@/hooks/useCookie";
 import fetcher from "@/libs/fetcher";
 import { removeTagString } from "@/libs/utils";
 
@@ -34,33 +34,13 @@ const getKey: SWRInfiniteKeyLoader<BlogPostsData> = (
 };
 
 export default function BlogTop() {
-  const cookies = getCookie("bookmark");
+  const { cookies, saveBookmarkCookie, deleteBookmarkCookie } = useCookie();
   const { data, size, setSize } = useSWRInfinite<BlogPostsData>(
     getKey,
     fetcher,
   );
-  // ブックマークの更新時に再レンダリングするためのフラグ(Cookie を更新しても際レンダリングされないため)
-  const [refresh, setRefresh] = useState<boolean>(false);
   // cookie の影響による react-hydration-error 対策
   const [isPreRender, setIsPreRender] = useState<boolean>(true);
-
-  const addCookie = useCallback(
-    (id: string) => {
-      const data = JSON.parse(cookies || "[]") as Array<string>;
-      setCookie("bookmark", [...data, id], { maxAge: 60 * 60 * 24 * 180 });
-      setRefresh(() => !refresh);
-    },
-    [cookies, refresh],
-  );
-
-  const deleteCookie = useCallback(
-    (id: string) => {
-      const data = JSON.parse(cookies || "[]") as Array<string>;
-      setCookie("bookmark", [...data.filter((v: string) => v !== id)]);
-      setRefresh(() => !refresh);
-    },
-    [cookies, refresh],
-  );
 
   const posts = useMemo<JSX.Element[]>(
     () =>
@@ -83,10 +63,10 @@ export default function BlogTop() {
                   {bookmarked ? (
                     <FaStar
                       className={styles.bookmarked}
-                      onClick={() => deleteCookie(id)}
+                      onClick={() => deleteBookmarkCookie(id)}
                     />
                   ) : (
-                    <FaRegStar onClick={() => addCookie(id)} />
+                    <FaRegStar onClick={() => saveBookmarkCookie(id)} />
                   )}
                 </div>
                 <h1 className={styles.title}>
@@ -105,7 +85,7 @@ export default function BlogTop() {
           }),
         )
         .flat() || [],
-    [addCookie, cookies, data, deleteCookie],
+    [cookies, data, deleteBookmarkCookie, saveBookmarkCookie],
   );
 
   const next = useCallback<Props["next"]>(() => {
