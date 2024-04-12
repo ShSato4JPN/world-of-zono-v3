@@ -81,11 +81,14 @@ export default function WozTop() {
                     <div className={styles.tags}>
                       {tags.map((tag) => (
                         <Link href={`/blog/tag/${tag}`} key={tag}>
-                          <div className={styles.tag}>{tag}</div>
+                          <div className={styles.tag}>#{tag}</div>
                         </Link>
                       ))}
                     </div>
                     <div className={styles.body}>{removeTagString(body)}</div>
+                    <div className={styles.readMore}>
+                      <button>続きを読む</button>
+                    </div>
                   </div>
                 );
               })}

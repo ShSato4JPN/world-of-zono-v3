@@ -69,7 +69,7 @@
   display: inline-block;
   width: fit-content;
   max-width: 90%;
-  font-size: 2rem;
+  font-size: 2.2rem;
 
   @media (hover: hover) {
     &:hover {
@@ -86,7 +86,8 @@
 }
 
 .tag {
-  padding: 3px 4px;
+  padding: 3px 5px;
+  font-size: 1.3rem;
   border: 1px solid var(--border);
   border-radius: 8px;
 
@@ -106,7 +107,30 @@
 
   font-size: 1.5rem;
 
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
+}
+
+.readMore {
+  display: inline-block;
+  width: 100%;
+  font-size: inherit;
+  text-align: center;
+
+  button {
+    cursor: pointer;
+
+    padding: 3px 10px;
+
+    background-color: transparent;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+
+    &:hover {
+      color: var(--focus-color);
+      background-color: var(--focus-background);
+      border: 1px solid var(--focus-border);
+    }
+  }
 }
 
 .loading {
