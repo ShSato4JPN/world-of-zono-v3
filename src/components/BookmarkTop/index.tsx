@@ -76,7 +76,9 @@ export default function BookmarkTop({ ids }: BookmarkProps) {
               </div>
               <div className={styles.body}>{removeTagString(body)}</div>
               <div className={styles.readMore}>
-                <button>続きを読む</button>
+                <Link className={styles.readMoreLink} href={`/blog/${id}`}>
+                  続きを読む
+                </Link>
               </div>
             </div>
           );
