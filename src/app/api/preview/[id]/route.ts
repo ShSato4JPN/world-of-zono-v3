@@ -16,8 +16,6 @@ export async function GET(
   _: Request,
   { params: { id } }: { params: { id: string } },
 ): Promise<NextResponse<PreviewPostData>> {
-  console.log(id);
-
   const entry = (await plainClient.entry.get({
     spaceId: process.env.CONTENTFUL_SPACE_ID || "",
     environmentId: process.env.CONTENTFUL_ENVIRONMENT || "",

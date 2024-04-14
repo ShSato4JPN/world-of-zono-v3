@@ -114,7 +114,7 @@ export default function BlogTags({ name }: BlogTagsProps) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.blogTags}>
-        <h1 className={styles.selectTag}>Tag : {decodeURIComponent(name)}</h1>
+        <h1 className={styles.selectTag}>#{decodeURIComponent(name)}</h1>
         {isPreRender ? (
           <div className={styles.loading}>
             <ThreeDots

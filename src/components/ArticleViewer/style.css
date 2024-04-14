@@ -1,3 +1,11 @@
+:root {
+  --icon-path: url("/icon-light.svg");
+}
+
+[data-theme="dark"] {
+  --icon-path: url("/icon-dark.svg");
+}
+
 ul {
   padding: 1rem 3rem;
 }
@@ -11,13 +19,27 @@ p {
 }
 
 .youtube {
-  text-align: center;
   width: 100%;
+  text-align: center;
 }
 
 .youtube iframe {
-  max-width: 600px;
-  width: 100%;
-  height: auto;
   aspect-ratio: 16 / 9;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+}
+
+.link {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+.link::after {
+  padding: 0 0 0 0.2rem;
+  display: inline-block;
+  margin-right: 3px;
+  width: 1rem;
+  height: 1rem;
+  content: var(--icon-path);
 }

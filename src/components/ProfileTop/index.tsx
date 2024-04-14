@@ -2,7 +2,7 @@ import Image from "next/image";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa6";
 import { FaSquareThreads } from "react-icons/fa6";
-import { SiWantedly } from "react-icons/si";
+//import { SiWantedly } from "react-icons/si";
 
 import styles from "./style.module.scss";
 
@@ -19,10 +19,6 @@ export default function ProfileTop() {
     {
       url: "https://www.threads.net/@satoshi1221_jp",
       icon: <FaSquareThreads className={styles.icon} />,
-    },
-    {
-      url: "https://www.wantedly.com/id/satoshi_hokazono",
-      icon: <SiWantedly className={styles.icon} />,
     },
   ];
 

@@ -75,6 +75,10 @@
   border: 1px solid var(--border);
   border-radius: 8px;
 
+  &::before {
+    content: "#";
+  }
+
   &:hover {
     color: var(--focus-color);
     background-color: var(--focus-background);
@@ -107,10 +111,11 @@
 .readMoreLink {
   cursor: pointer;
 
-  padding: 3px 10px;
+  padding: 5px 10px;
 
   font-size: 1.3rem;
 
+  background-color: transparent;
   border: 1px solid var(--border);
   border-radius: 5px;
 

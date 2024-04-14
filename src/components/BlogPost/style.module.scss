@@ -63,6 +63,10 @@
   border: 1px solid var(--border);
   border-radius: 8px;
 
+  &::before {
+    content: "#";
+  }
+
   @media (hover: hover) {
     &:hover {
       color: var(--focus-color);
