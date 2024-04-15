@@ -30,6 +30,17 @@ p {
   height: auto;
 }
 
+.image {
+  width: 100%;
+  text-align: center;
+}
+
+.image img {
+  width: inherit;
+  max-width: 600px;
+  height: auto;
+}
+
 .link {
   color: #0070f3;
   text-decoration: none;
