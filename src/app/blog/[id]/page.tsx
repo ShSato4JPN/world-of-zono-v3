@@ -34,7 +34,7 @@ export async function generateMetadata({ params: { id } }: PageProps) {
   const url = `${process.env.NEXT_PUBLIC_URL}/og-image.webp`;
 
   return {
-    title,
+    title: `${title} | WOZ`,
     description,
     openGraph: {
       title,
