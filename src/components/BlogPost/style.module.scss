@@ -33,6 +33,10 @@
   color: var(--bookmark);
 }
 
+.notBookmarked:hover {
+  color: var(--bookmark);
+}
+
 .title {
   width: fit-content;
   margin-bottom: 5px;

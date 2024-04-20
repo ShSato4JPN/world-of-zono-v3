@@ -50,6 +50,10 @@
   color: var(--bookmark);
 }
 
+.notBookmarked:hover {
+  color: var(--bookmark);
+}
+
 .title {
   display: inline-block;
   width: fit-content;

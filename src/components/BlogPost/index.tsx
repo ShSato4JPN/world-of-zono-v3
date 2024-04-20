@@ -64,7 +64,10 @@ export default function BlogPost({ id }: BlogPostProps) {
                     onClick={() => deleteBookmarkCookie(id)}
                   />
                 ) : (
-                  <FaRegStar onClick={() => saveBookmarkCookie(id)} />
+                  <FaRegStar
+                    className={styles.notBookmarked}
+                    onClick={() => saveBookmarkCookie(id)}
+                  />
                 )}
               </div>
               <time

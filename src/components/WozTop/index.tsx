@@ -72,7 +72,10 @@ export default function WozTop() {
                           onClick={() => deleteBookmarkCookie(id)}
                         />
                       ) : (
-                        <FaRegStar onClick={() => saveBookmarkCookie(id)} />
+                        <FaRegStar
+                          className={styles.notBookmarked}
+                          onClick={() => saveBookmarkCookie(id)}
+                        />
                       )}
                     </div>
                     <h1 className={styles.title}>
