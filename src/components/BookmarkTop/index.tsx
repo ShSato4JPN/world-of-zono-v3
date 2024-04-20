@@ -7,10 +7,10 @@ import dayjs from "dayjs";
 import Link from "next/link";
 import { FaRegStar } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
+import { stripHtml } from "string-strip-html";
 
 import { BlogPostsData } from "@/app/api/posts/[id]/route";
 import useCookie from "@/hooks/useCookie";
-import { removeTagString } from "@/libs/utils";
 
 import styles from "./style.module.scss";
 
@@ -74,7 +74,7 @@ export default function BookmarkTop({ ids }: BookmarkProps) {
                   </Link>
                 ))}
               </div>
-              <div className={styles.body}>{removeTagString(body)}</div>
+              <div className={styles.body}>{stripHtml(body).result}</div>
               <div className={styles.readMore}>
                 <Link className={styles.readMoreLink} href={`/blog/${id}`}>
                   続きを読む

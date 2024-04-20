@@ -9,12 +9,12 @@ import Link from "next/link";
 import queryString from "query-string";
 import { FaRegStar } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
+import { stripHtml } from "string-strip-html";
 import useSWRInfinite, { SWRInfiniteKeyLoader } from "swr/infinite";
 
 import { BlogPostsData } from "@/app/api/posts/route";
 import useCookie from "@/hooks/useCookie";
 import fetcher from "@/libs/fetcher";
-import { removeTagString } from "@/libs/utils";
 
 import styles from "./style.module.scss";
 
@@ -79,7 +79,7 @@ export default function BlogTop() {
                     </Link>
                   ))}
                 </div>
-                <div className={styles.body}>{removeTagString(body)}</div>
+                <div className={styles.body}>{stripHtml(body).result}</div>
                 <div className={styles.readMore}>
                   <Link className={styles.readMoreLink} href={`/blog/${id}`}>
                     続きを読む

@@ -1,7 +1,8 @@
+import { stripHtml } from "string-strip-html";
+
 import { BlogPostsData } from "@/app/api/posts/[id]/route";
 import BlogPost from "@/components/BlogPost";
 import SwrConfig from "@/components/SwrConfig";
-import { removeTagString } from "@/libs/utils";
 
 type PageProps = {
   params: { id: string };
@@ -30,7 +31,7 @@ export async function generateMetadata({ params: { id } }: PageProps) {
 
   const fields = post.items.at(0)?.fields;
   const title = fields?.title as string;
-  const description = removeTagString(fields?.body as string).slice(0, 50);
+  const description = stripHtml(fields?.body as string).result.slice(0, 50);
   const url = `${process.env.NEXT_PUBLIC_URL}/og-image.webp`;
 
   return {

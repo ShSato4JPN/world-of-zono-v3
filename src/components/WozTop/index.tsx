@@ -8,12 +8,12 @@ import Link from "next/link";
 import queryString from "query-string";
 import { FaRegStar } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
+import { stripHtml } from "string-strip-html";
 import useSWR from "swr";
 
 import { BlogPostsData } from "@/app/api/posts/route";
 import useCookie from "@/hooks/useCookie";
 import fetcher from "@/libs/fetcher";
-import { removeTagString } from "@/libs/utils";
 
 import styles from "./style.module.scss";
 
@@ -85,7 +85,7 @@ export default function WozTop() {
                         </Link>
                       ))}
                     </div>
-                    <div className={styles.body}>{removeTagString(body)}</div>
+                    <div className={styles.body}>{stripHtml(body).result}</div>
                     <div className={styles.readMore}>
                       <Link
                         className={styles.readMoreLink}

@@ -47,13 +47,11 @@ const options: HTMLReactParserOptions = {
         const highlightedCode = hljs.highlight(language, code).value;
 
         return (
-          <>
-            <pre>
-              <code className={`${`hljs ${language}`} ${styles.code}`}>
-                {parse(highlightedCode)}
-              </code>
-            </pre>
-          </>
+          <pre>
+            <code className={`${`hljs ${language}`} ${styles.code}`}>
+              {parse(highlightedCode)}
+            </code>
+          </pre>
         );
       }
     }
