@@ -18,6 +18,10 @@ p {
   line-height: 1.6;
 }
 
+code {
+  font-size: 0.9rem;
+}
+
 .youtube {
   width: 100%;
   text-align: center;
