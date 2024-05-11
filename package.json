@@ -30,7 +30,7 @@
     "react-infinite-scroll-component": "6.1.0",
     "react-loader-spinner": "6.1.6",
     "react-toastify": "10.0.5",
-    "sass": "1.77.0",
+    "sass": "1.77.1",
     "string-strip-html": "13.4.8",
     "swr": "2.2.5",
     "zod": "3.23.8"
