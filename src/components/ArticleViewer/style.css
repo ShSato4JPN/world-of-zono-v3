@@ -1,11 +1,15 @@
 :root {
   --icon-path: url("/icon-light.svg");
   --highlight: #d9925082;
+  --underLine: #996b3fc2;
+  --blockquote: #996b3f21;
 }
 
 [data-theme="dark"] {
   --icon-path: url("/icon-dark.svg");
   --highlight: #cecece72;
+  --underLine: #cecece9f;
+  --blockquote: #cecece1f;
 }
 
 ul {
@@ -24,6 +28,13 @@ code {
   margin: 5px 0;
   border-radius: 0.5rem;
   font-size: 0.7rem;
+}
+
+blockquote {
+  border-radius: 5px;
+  background-color: var(--blockquote);
+  padding: 1rem 1.3rem;
+  opacity: 0.8;
 }
 
 .highlight {
@@ -68,4 +79,17 @@ code {
   width: 1rem;
   height: 1rem;
   content: var(--icon-path);
+}
+
+.title {
+  border-left: 1rem solid var(--underLine);
+  border-bottom: 0.25rem solid var(--underLine);
+  margin-bottom: 1rem;
+  padding: 0.7rem 0 0.7rem 0.5rem;
+}
+
+.sub-title {
+  font-size: 2.2rem;
+  display: block;
+  padding: 0.7rem 0 0.7rem 0.5rem;
 }
