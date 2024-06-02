@@ -2,6 +2,7 @@ import hljs from "highlight.js/lib/core";
 import bash from "highlight.js/lib/languages/bash";
 import css from "highlight.js/lib/languages/css";
 import javascript from "highlight.js/lib/languages/javascript";
+import json from "highlight.js/lib/languages/json";
 import scss from "highlight.js/lib/languages/scss";
 import typescript from "highlight.js/lib/languages/typescript";
 import xml from "highlight.js/lib/languages/xml";
@@ -33,6 +34,7 @@ hljs.registerLanguage("css", css);
 hljs.registerLanguage("html", xml);
 hljs.registerLanguage("scss", scss);
 hljs.registerLanguage("bash", bash);
+hljs.registerLanguage("json", json);
 
 const options: HTMLReactParserOptions = {
   replace: (domNode: DOMNode) => {
