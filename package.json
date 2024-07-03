@@ -55,7 +55,7 @@
     "lint-staged": "15.2.5",
     "prettier": "3.2.5",
     "stylelint": "16.6.1",
-    "stylelint-config-clean-order": "5.4.2",
+    "stylelint-config-clean-order": "6.1.0",
     "stylelint-config-css-modules": "4.4.0",
     "stylelint-config-standard-scss": "13.1.0",
     "typescript": "^5",
